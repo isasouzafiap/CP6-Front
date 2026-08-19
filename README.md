@@ -18,9 +18,9 @@ Tema vermelho escuro com detalhes em amarelo.
 
  **Border Radius:** `8px`
 
-# Regra Blackjack:
+# 🃏Regra Blackjack:
 Nesta versão do Blackjack, o objetivo é somar cartas sem ultrapassar 25 pontos. Se um jogador passar de 25, ele perde a rodada
 
 # Nome e RM:
-**Nome:** Isabelle Souza Lima Pires Araújo
+**Nome:** Isabelle Souza Lima Pires Araujo
 **RM:** 569370
