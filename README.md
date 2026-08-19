@@ -1,5 +1,5 @@
 # Objetivo do Projeto
--Criar um projeto em React utilizando Vite para desenvolver um jogo de Blackjack.
+Criar um projeto em React utilizando Vite para desenvolver um jogo de Blackjack.
 
 # 🎨Tema Viual:
 Tema vermelho escuro com detalhes em amarelo.
@@ -19,7 +19,8 @@ Tema vermelho escuro com detalhes em amarelo.
  **Border Radius:** `8px`
 
 # Regra Blackjack:
--Nesta versão do Blackjack, o objetivo é somar cartas sem ultrapassar 25 pontos. Se um jogador passar de 25, ele perde a rodada
+Nesta versão do Blackjack, o objetivo é somar cartas sem ultrapassar 25 pontos. Se um jogador passar de 25, ele perde a rodada
 
 # Nome e RM:
-Isabelle Souza Lima Pires Araujo 569370
+**Nome:** Isabelle Souza Lima Pires Araújo
+**RM:** 569370
