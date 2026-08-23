@@ -1,0 +1,55 @@
+.game-table {
+  background: var(--color-table);
+  border: 1px solid var(--color-table-border);
+  border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+  padding: 18px 20px 22px;
+}
+
+.game-table__hand {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: var(--radius-md);
+  padding: 12px 14px 16px;
+  margin-bottom: 14px;
+}
+
+.game-table__hand-label {
+  display: block;
+  font-size: 0.7rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+  margin-bottom: 10px;
+}
+
+.game-table__cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  min-height: 96px;
+}
+
+.game-table__message {
+  background: rgba(224, 169, 92, 0.12);
+  border-left: 3px solid var(--color-accent);
+  color: var(--color-text);
+  font-size: 0.85rem;
+  padding: 8px 12px;
+  border-radius: 4px;
+  margin: 0 0 16px;
+}
+
+.game-table__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .game-table__actions {
+    flex-direction: column;
+  }
+
+  .game-table__actions .btn {
+    width: 100%;
+  }
+}
