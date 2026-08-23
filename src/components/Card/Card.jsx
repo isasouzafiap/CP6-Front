@@ -1,7 +1,6 @@
 import "./Card.css";
 
-// Componente "burro" (apresentacional): só recebe dados via props
-// e mostra a carta. Não tem nenhuma lógica de jogo aqui.
+
 function Card({ card, hidden = false }) {
   if (hidden) {
     return (

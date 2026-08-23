@@ -1,36 +1,47 @@
+/*
+  Paleta obrigatória do projeto (README do professor):
+  Primary:    #991B1B
+  Secondary:  #F87171
+  Background: #450A0A
+  Text:       #FEF2F2
+  Accent:     #FACC15
+  Border radius: 8px
+  Tema: vermelho escuro com detalhes em amarelo
+*/
 :root {
-  --color-bg: #14201c;
-  --color-table: #1f3d31;
-  --color-table-border: #2f5744;
-  --color-panel: #f0e6cf;
-  --color-panel-text: #2b2620;
-  --color-text: #f4f1e9;
-  --color-text-muted: #b9c9c0;
-  --color-accent: #e0a95c;
-  --color-accent-hover: #eab86e;
-  --color-accent-text: #241a0a;
-  --color-outline: #3d5b4d;
-  --color-danger: #d97757;
+  --color-bg: #450a0a;
+  --color-table: #991b1b;
+  --color-table-border: #7a1616;
+  --color-panel: #f87171;
+  --color-panel-text: #450a0a;
+  --color-text: #fef2f2;
+  --color-text-muted: #f3b7b7;
+  --color-accent: #facc15;
+  --color-accent-hover: #ffdb4d;
+  --color-accent-text: #450a0a;
+  --color-outline: #f87171;
+  --color-danger: #fca5a5;
   --font-display: "Trebuchet MS", "Segoe UI", sans-serif;
   --font-body: "Segoe UI", Arial, sans-serif;
-  --radius-md: 10px;
-  --radius-lg: 16px;
+  --radius-md: 8px;
+  --radius-lg: 8px;
   --shadow-card: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
+/* Variante clara, usando a mesma paleta (só invertendo o peso das cores) */
 [data-theme="light"] {
-  --color-bg: #eef1ec;
-  --color-table: #2f5744;
-  --color-table-border: #3f6d56;
+  --color-bg: #fef2f2;
+  --color-table: #f87171;
+  --color-table-border: #f45c5c;
   --color-panel: #ffffff;
-  --color-panel-text: #23291f;
-  --color-text: #1c231d;
-  --color-text-muted: #4c5a4f;
-  --color-accent: #d9973f;
-  --color-accent-hover: #e6a852;
-  --color-accent-text: #2b1a04;
-  --color-outline: #c8d3c9;
-  --color-danger: #c65a3c;
+  --color-panel-text: #450a0a;
+  --color-text: #450a0a;
+  --color-text-muted: #8a3a3a;
+  --color-accent: #facc15;
+  --color-accent-hover: #ffdb4d;
+  --color-accent-text: #450a0a;
+  --color-outline: #f3b7b7;
+  --color-danger: #b91c1c;
 }
 
 * {

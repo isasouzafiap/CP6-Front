@@ -15,7 +15,7 @@ function GameTable({
   onStand,
   onNewRound,
 }) {
-
+  // Enquanto a rodada está rolando, escondemos a 2ª carta do dealer
   const shouldHideDealerCard = (index) => index === 1 && !isRoundOver;
 
   return (

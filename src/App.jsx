@@ -4,10 +4,14 @@ import GameTable from "./components/GameTable/GameTable.jsx";
 import { createFullDeck, shuffleDeck, calculateScore } from "./data/deck.js";
 import "./App.css";
 
-const PLAYER_NAME = "isa souza";
+const PLAYER_NAME = "isasouza";
 const AUTHOR_NAME = "Isabelle Souza";
 
-// Monta um novo baralho embaralhado e distribui 2 cartas para cada lado
+// Quem passar de 25 perde a rodada na hora.
+const TARGET_SCORE = 25;
+
+const DEALER_STAND_SCORE = TARGET_SCORE - 4;
+
 function dealNewRound() {
   const deck = shuffleDeck(createFullDeck());
   const playerHand = [deck.pop(), deck.pop()];
@@ -23,8 +27,8 @@ function App() {
     "Sua vez: escolha Hit, Stand ou reinicie a rodada"
   );
 
-  const playerScore = calculateScore(playerHand);
-  const dealerScore = calculateScore(dealerHand);
+  const playerScore = calculateScore(playerHand, TARGET_SCORE);
+  const dealerScore = calculateScore(dealerHand, TARGET_SCORE);
 
   const handleToggleTheme = useCallback(() => {
     setTheme((prev) => (prev === "dark" ? "light" : "dark"));
@@ -42,16 +46,16 @@ function App() {
     const nextDeck = [...deck];
     const nextCard = nextDeck.pop();
     const nextPlayerHand = [...playerHand, nextCard];
-    const nextScore = calculateScore(nextPlayerHand);
+    const nextScore = calculateScore(nextPlayerHand, TARGET_SCORE);
 
     setRound({ deck: nextDeck, playerHand: nextPlayerHand, dealerHand });
 
-    if (nextScore > 21) {
+    if (nextScore > TARGET_SCORE) {
       setIsRoundOver(true);
-      setMessage("Estourou! Você passou de 21 — o dealer venceu.");
-    } else if (nextScore === 21) {
+      setMessage(`Estourou! Você passou de ${TARGET_SCORE} — o dealer venceu.`);
+    } else if (nextScore === TARGET_SCORE) {
       setIsRoundOver(true);
-      setMessage("Você fez 21! Blackjack — você venceu!");
+      setMessage(`Você fez ${TARGET_SCORE}! Você venceu!`);
     }
   }, [isRoundOver, deck, playerHand, dealerHand]);
 
@@ -61,18 +65,18 @@ function App() {
     let nextDeck = [...deck];
     let nextDealerHand = [...dealerHand];
 
-    // Dealer compra até chegar em 17 ou mais (regra clássica de cassino)
-    while (calculateScore(nextDealerHand) < 17) {
+    // Dealer compra até chegar em DEALER_STAND_SCORE ou mais
+    while (calculateScore(nextDealerHand, TARGET_SCORE) < DEALER_STAND_SCORE) {
       nextDealerHand = [...nextDealerHand, nextDeck.pop()];
     }
 
-    const finalPlayerScore = calculateScore(playerHand);
-    const finalDealerScore = calculateScore(nextDealerHand);
+    const finalPlayerScore = calculateScore(playerHand, TARGET_SCORE);
+    const finalDealerScore = calculateScore(nextDealerHand, TARGET_SCORE);
 
     setRound({ deck: nextDeck, playerHand, dealerHand: nextDealerHand });
     setIsRoundOver(true);
 
-    if (finalDealerScore > 21) {
+    if (finalDealerScore > TARGET_SCORE) {
       setMessage("O dealer estourou! Você venceu.");
     } else if (finalDealerScore > finalPlayerScore) {
       setMessage(`Dealer venceu com ${finalDealerScore} contra ${finalPlayerScore}.`);
@@ -89,7 +93,7 @@ function App() {
         <Header
           playerName={PLAYER_NAME}
           authorName={AUTHOR_NAME}
-          objective="Fazer 21 pontos"
+          objective={`Fazer ${TARGET_SCORE} pontos`}
           topScore={playerScore}
           theme={theme}
           onToggleTheme={handleToggleTheme}
