@@ -1,0 +1,21 @@
+.app {
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px;
+}
+
+.app__card {
+  width: 100%;
+  max-width: 480px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.35);
+}
+
+@media (max-width: 480px) {
+  .app {
+    padding: 12px 8px;
+  }
+}

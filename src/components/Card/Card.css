@@ -1,0 +1,64 @@
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 4px;
+  width: 76px;
+  animation: card-deal 0.25s ease-out;
+}
+
+.card__image {
+  width: 100%;
+  border-radius: 6px;
+  box-shadow: var(--shadow-card);
+  background: #fff;
+}
+
+.card__caption {
+  font-size: 0.65rem;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.card--hidden {
+  width: 76px;
+  aspect-ratio: 5 / 7;
+  border-radius: 6px;
+  background: repeating-linear-gradient(
+    45deg,
+    var(--color-accent),
+    var(--color-accent) 6px,
+    var(--color-accent-hover) 6px,
+    var(--color-accent-hover) 12px
+  );
+  border: 3px solid var(--color-panel);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-card);
+}
+
+.card__back-pattern {
+  font-weight: bold;
+  font-size: 1.4rem;
+  color: var(--color-accent-text);
+}
+
+@keyframes card-deal {
+  from {
+    transform: translateY(-16px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 480px) {
+  .card,
+  .card--hidden {
+    width: 56px;
+  }
+}
