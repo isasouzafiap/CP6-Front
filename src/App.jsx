@@ -1,114 +1,66 @@
-import { useState, useCallback } from "react";
+
 import Header from "./components/Header/Header.jsx";
 import GameTable from "./components/GameTable/GameTable.jsx";
-import { createFullDeck, shuffleDeck, calculateScore } from "./data/deck.js";
+
 import "./App.css";
 
 const PLAYER_NAME = "isasouza";
 const AUTHOR_NAME = "Isabelle Souza";
 
-// Quem passar de 25 perde a rodada na hora.
+
 const TARGET_SCORE = 25;
 
-const DEALER_STAND_SCORE = TARGET_SCORE - 4;
+const dealerHand = [
+  {
+    code: "2H",
+    image: "https://deckofcardsapi.com/static/img/2H.png",
+    value: "2",
+    suit: "HEARTS",
+  },
+  {
+    code: "3C",
+    image: "https://deckofcardsapi.com/static/img/3C.png",
+    value: "3",
+    suit: "CLUBS",
+  },
+];
 
-function dealNewRound() {
-  const deck = shuffleDeck(createFullDeck());
-  const playerHand = [deck.pop(), deck.pop()];
-  const dealerHand = [deck.pop(), deck.pop()];
-  return { deck, playerHand, dealerHand };
-}
+// Mock fixo da mão do jogador
+const playerHand = [
+  {
+    code: "AH",
+    image: "https://deckofcardsapi.com/static/img/AH.png",
+    value: "ACE",
+    suit: "HEARTS",
+  },
+  {
+    code: "QD",
+    image: "https://deckofcardsapi.com/static/img/QD.png",
+    value: "QUEEN",
+    suit: "DIAMONDS",
+  },
+];
 
-function App() {
-  const [theme, setTheme] = useState("dark");
-  const [{ deck, playerHand, dealerHand }, setRound] = useState(dealNewRound);
-  const [isRoundOver, setIsRoundOver] = useState(false);
-  const [message, setMessage] = useState(
-    "Sua vez: escolha Hit, Stand ou reinicie a rodada"
-  );
+// Placares e mensagem também fixos, só para preencher o layout
+const MOCK_PLAYER_SCORE = 11;
+const MOCK_DEALER_SCORE = 5;
+const MOCK_MESSAGE = "Sua vez: escolha Hit, Stand ou reinicie a rodada";
 
-  const playerScore = calculateScore(playerHand, TARGET_SCORE);
-  const dealerScore = calculateScore(dealerHand, TARGET_SCORE);
-
-  const handleToggleTheme = useCallback(() => {
-    setTheme((prev) => (prev === "dark" ? "light" : "dark"));
-  }, []);
-
-  const handleNewRound = useCallback(() => {
-    setRound(dealNewRound());
-    setIsRoundOver(false);
-    setMessage("Sua vez: escolha Hit, Stand ou reinicie a rodada");
-  }, []);
-
-  const handleHit = useCallback(() => {
-    if (isRoundOver) return;
-
-    const nextDeck = [...deck];
-    const nextCard = nextDeck.pop();
-    const nextPlayerHand = [...playerHand, nextCard];
-    const nextScore = calculateScore(nextPlayerHand, TARGET_SCORE);
-
-    setRound({ deck: nextDeck, playerHand: nextPlayerHand, dealerHand });
-
-    if (nextScore > TARGET_SCORE) {
-      setIsRoundOver(true);
-      setMessage(`Estourou! Você passou de ${TARGET_SCORE} — o dealer venceu.`);
-    } else if (nextScore === TARGET_SCORE) {
-      setIsRoundOver(true);
-      setMessage(`Você fez ${TARGET_SCORE}! Você venceu!`);
-    }
-  }, [isRoundOver, deck, playerHand, dealerHand]);
-
-  const handleStand = useCallback(() => {
-    if (isRoundOver) return;
-
-    let nextDeck = [...deck];
-    let nextDealerHand = [...dealerHand];
-
-    // Dealer compra até chegar em DEALER_STAND_SCORE ou mais
-    while (calculateScore(nextDealerHand, TARGET_SCORE) < DEALER_STAND_SCORE) {
-      nextDealerHand = [...nextDealerHand, nextDeck.pop()];
-    }
-
-    const finalPlayerScore = calculateScore(playerHand, TARGET_SCORE);
-    const finalDealerScore = calculateScore(nextDealerHand, TARGET_SCORE);
-
-    setRound({ deck: nextDeck, playerHand, dealerHand: nextDealerHand });
-    setIsRoundOver(true);
-
-    if (finalDealerScore > TARGET_SCORE) {
-      setMessage("O dealer estourou! Você venceu.");
-    } else if (finalDealerScore > finalPlayerScore) {
-      setMessage(`Dealer venceu com ${finalDealerScore} contra ${finalPlayerScore}.`);
-    } else if (finalDealerScore < finalPlayerScore) {
-      setMessage(`Você venceu com ${finalPlayerScore} contra ${finalDealerScore}!`);
-    } else {
-      setMessage(`Empate em ${finalPlayerScore} pontos.`);
-    }
-  }, [isRoundOver, deck, playerHand, dealerHand]);
-
-  return (
-    <div className="app" data-theme={theme}>
+function App() {  return (
+    <div className="app" data-theme="dark">
       <div className="app__card">
         <Header
           playerName={PLAYER_NAME}
           authorName={AUTHOR_NAME}
           objective={`Fazer ${TARGET_SCORE} pontos`}
-          topScore={playerScore}
-          theme={theme}
-          onToggleTheme={handleToggleTheme}
-          onExit={() => setMessage("Até a próxima rodada!")}
+          topScore={MOCK_PLAYER_SCORE}
         />
         <GameTable
           dealerHand={dealerHand}
           playerHand={playerHand}
-          dealerScore={dealerScore}
-          playerScore={playerScore}
-          message={message}
-          isRoundOver={isRoundOver}
-          onHit={handleHit}
-          onStand={handleStand}
-          onNewRound={handleNewRound}
+          dealerScore={MOCK_DEALER_SCORE}
+          playerScore={MOCK_PLAYER_SCORE}
+          message={MOCK_MESSAGE}
         />
       </div>
     </div>

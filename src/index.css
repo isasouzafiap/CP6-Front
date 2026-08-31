@@ -1,16 +1,7 @@
-/*
-  Paleta obrigatória do projeto (README do professor):
-  Primary:    #991B1B
-  Secondary:  #F87171
-  Background: #450A0A
-  Text:       #FEF2F2
-  Accent:     #FACC15
-  Border radius: 8px
-  Tema: vermelho escuro com detalhes em amarelo
-*/
+
 :root {
   --color-bg: #450a0a;
-  --color-table: #991b1b;
+  --color-table: #991b1b; 
   --color-table-border: #7a1616;
   --color-panel: #f87171;
   --color-panel-text: #450a0a;
@@ -28,7 +19,7 @@
   --shadow-card: 0 4px 10px rgba(0, 0, 0, 0.35);
 }
 
-/* Variante clara, usando a mesma paleta (só invertendo o peso das cores) */
+
 [data-theme="light"] {
   --color-bg: #fef2f2;
   --color-table: #f87171;
