@@ -1,7 +1,10 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
 :root {
   --color-bg: #450a0a;
-  --color-table: #991b1b; 
+  --color-table: #991b1b;
   --color-table-border: #7a1616;
   --color-panel: #f87171;
   --color-panel-text: #450a0a;
@@ -11,14 +14,7 @@
   --color-accent-hover: #ffdb4d;
   --color-accent-text: #450a0a;
   --color-outline: #f87171;
-  --color-danger: #fca5a5;
-  --font-display: "Trebuchet MS", "Segoe UI", sans-serif;
-  --font-body: "Segoe UI", Arial, sans-serif;
-  --radius-md: 8px;
-  --radius-lg: 8px;
-  --shadow-card: 0 4px 10px rgba(0, 0, 0, 0.35);
-}
-
+  --color-danger: #fca5a5;}
 
 [data-theme="light"] {
   --color-bg: #fef2f2;
@@ -32,27 +28,10 @@
   --color-accent-hover: #ffdb4d;
   --color-accent-text: #450a0a;
   --color-outline: #f3b7b7;
-  --color-danger: #b91c1c;
-}
-
-* {
-  box-sizing: border-box;
-}
+  --color-danger: #b91c1c;}
 
 html,
 body,
 #root {
   height: 100%;
-  margin: 0;
-}
-
-body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: var(--font-body);
-  transition: background-color 0.25s ease, color 0.25s ease;
-}
-
-button {
-  font-family: inherit;
-}
+  margin: 0;}
