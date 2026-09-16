@@ -38,7 +38,7 @@ function buildCard(value, suit) {
   };
 }
 
-// Gera as 52 cartas do baralho, no mesmo formato do mock.json
+
 export function createFullDeck() {
   const deck = [];
   for (const suit of SUITS) {
@@ -49,7 +49,7 @@ export function createFullDeck() {
   return deck;
 }
 
-// Embaralha (Fisher-Yates) sem mutar o array original
+
 export function shuffleDeck(deck) {
   const shuffled = [...deck];
   for (let i = shuffled.length - 1; i > 0; i--) {
@@ -59,9 +59,7 @@ export function shuffleDeck(deck) {
   return shuffled;
 }
 
-// Valor numérico de uma carta para o Blackjack
-// (Ás soma 11 por padrão; a redução para 1 é tratada em calculateScore)
-export function cardValue(card) {
+function cardValue(card) {
   if (card.value === "ACE") return 11;
   if (["JACK", "QUEEN", "KING"].includes(card.value)) return 10;
   return parseInt(card.value, 10);

@@ -1,21 +1,21 @@
 import Card from "../Card/Card.jsx";
 import Button from "../Button/Button.jsx";
 import ScoreBoard from "../ScoreBoard/ScoreBoard.jsx";
+import { useGame } from "../../context/GameContext.jsx";
 
+function GameTable() {
+  const {
+    dealerHand,
+    playerHand,
+    dealerScore,
+    playerScore,
+    message,
+    isRoundOver,
+    hit,
+    stand,
+    newRound,
+  } = useGame();
 
-
-function GameTable({
-  dealerHand,
-  playerHand,
-  dealerScore,
-  playerScore,
-  message,
-  isRoundOver,
-  onHit,
-  onStand,
-  onNewRound,
-}) 
-{
   const shouldHideDealerCard = (index) => index === 1 && !isRoundOver;
 
   return (
@@ -53,9 +53,9 @@ function GameTable({
       </p>
 
       <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 [&>button]:w-full sm:[&>button]:w-auto">
-        <Button label="Hit" variant="primary" onClick={onHit} disabled={isRoundOver} />
-        <Button label="Stand" variant="secondary" onClick={onStand} disabled={isRoundOver} />
-        <Button label="Nova rodada" variant="outline" onClick={onNewRound} />
+        <Button label="Hit" variant="primary" onClick={hit} disabled={isRoundOver} />
+        <Button label="Stand" variant="secondary" onClick={stand} disabled={isRoundOver} />
+        <Button label="Nova rodada" variant="outline" onClick={newRound} />
       </div>
     </section>
   );
