@@ -1,13 +1,8 @@
 import { useState, useCallback } from "react";
 import Header from "./components/Header/Header.jsx";
 import GameTable from "./components/GameTable/GameTable.jsx";
-import { createFullDeck, shuffleDeck, calculateScore } from "./data/deck.js";
-import "./App.css";
-
-const PLAYER_NAME = "isasouza";
-const AUTHOR_NAME = "Isabelle Souza";
-
-
+import { createFullDeck, shuffleDeck, calculateScore } from "./data/deck.js"
+;
 const TARGET_SCORE = 25;
 
 const DEALER_STAND_SCORE = TARGET_SCORE - 4;
@@ -65,8 +60,7 @@ function App() {
     let nextDeck = [...deck];
     let nextDealerHand = [...dealerHand];
 
-    // Dealer compra até chegar em DEALER_STAND_SCORE ou mais
-    while (calculateScore(nextDealerHand, TARGET_SCORE) < DEALER_STAND_SCORE) {
+   while (calculateScore(nextDealerHand, TARGET_SCORE) < DEALER_STAND_SCORE) {
       nextDealerHand = [...nextDealerHand, nextDeck.pop()];
     }
 
@@ -88,11 +82,14 @@ function App() {
   }, [isRoundOver, deck, playerHand, dealerHand]);
 
   return (
-    <div className="app" data-theme={theme}>
-      <div className="app__card">
+    <div
+      data-theme={theme}
+      className="min-h-full flex items-center justify-center p-3 sm:p-6 bg-bg text-text font-body transition-colors duration-300"
+    >
+      <div className="w-full max-w-[480px] rounded-lg overflow-hidden shadow-app">
         <Header
-          playerName={PLAYER_NAME}
-          authorName={AUTHOR_NAME}
+          playerName="Isabelle Souza"
+          authorName="Isabelle Souza Lima"
           objective={`Fazer ${TARGET_SCORE} pontos`}
           topScore={playerScore}
           theme={theme}

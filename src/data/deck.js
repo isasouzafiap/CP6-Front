@@ -67,8 +67,7 @@ export function cardValue(card) {
   return parseInt(card.value, 10);
 }
 
-// Soma os pontos de uma mão, ajustando Áses de 11 para 1 quando estoura o limite.
-// maxScore é o teto da rodada (nesta versão do jogo, 25 pontos).
+
 export function calculateScore(hand, maxScore = 21) {
   let score = hand.reduce((total, card) => total + cardValue(card), 0);
   let aces = hand.filter((card) => card.value === "ACE").length;
