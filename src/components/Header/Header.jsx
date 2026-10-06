@@ -1,20 +1,28 @@
+import { useNavigate } from "react-router-dom";
 import Button from "../Button/Button.jsx";
 import { useTheme } from "../../context/ThemeContext.jsx";
 import { useGame } from "../../context/GameContext.jsx";
+import { useAuth } from "../../context/AuthContext.jsx";
 
-const PLAYER_NAME = "Isabelle Souza";
 const AUTHOR_NAME = "Isabelle Souza Lima";
 
 function Header() {
+  const navigate = useNavigate();
   const { theme, toggleTheme } = useTheme();
   const { playerScore, targetScore } = useGame();
+  const { playerName, logout } = useAuth();
   const isLight = theme === "light";
+
+  const handleExit = () => {
+    logout();
+    navigate("/login");
+  };
 
   return (
     <header className="bg-table border border-table-border rounded-t-lg px-5 pt-4 pb-2.5 text-text">
       <div className="flex justify-between items-center text-xs text-text-muted mb-2.5">
-        <span>Jogador: {PLAYER_NAME}</span>
-        <Button label="Sair" variant="outline" />
+        <span>Jogador: {playerName}</span>
+        <Button label="Sair" variant="outline" onClick={handleExit} />
       </div>
 
       <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-2.5">

@@ -5,11 +5,10 @@ const VARIANT_CLASSES = {
   ghost: "bg-white/10 text-text",
 };
 
-function Button({ label, onClick, variant = "primary", disabled = false }) {
+function Button({ label, onClick, variant = "primary", disabled = false, type = "button" }) {
   return (
     <button
-      type="button"
-      
+      type={type}
       onClick={onClick}
       disabled={disabled}
       className={`rounded-full px-[22px] py-2.5 text-[0.85rem] font-semibold cursor-pointer
