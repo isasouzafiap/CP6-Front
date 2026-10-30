@@ -11,6 +11,8 @@ function GameTable() {
     playerScore,
     message,
     isRoundOver,
+    isLoading,
+    error,
     hit,
     stand,
     newRound,
@@ -48,14 +50,21 @@ function GameTable() {
         </div>
       </div>
 
-      <p className="bg-accent/[0.12] border-l-[3px] border-accent text-text text-[0.85rem] px-3 py-2 rounded mb-4">
-        {message}
+      <p
+        className={`text-[0.85rem] px-3 py-2 rounded mb-4 border-l-[3px] ${
+          error
+            ? "bg-black/20 border-danger text-danger"
+            : "bg-accent/[0.12] border-accent text-text"
+        }`}
+        role={error ? "alert" : undefined}
+      >
+        {error ?? message}
       </p>
 
       <div className="flex flex-col sm:flex-row flex-wrap gap-2.5 [&>button]:w-full sm:[&>button]:w-auto">
-        <Button label="Hit" variant="primary" onClick={hit} disabled={isRoundOver} />
-        <Button label="Stand" variant="secondary" onClick={stand} disabled={isRoundOver} />
-        <Button label="Nova rodada" variant="outline" onClick={newRound} />
+        <Button label="Hit" variant="primary" onClick={hit} disabled={isRoundOver || isLoading} />
+        <Button label="Stand" variant="secondary" onClick={stand} disabled={isRoundOver || isLoading} />
+        <Button label="Nova rodada" variant="outline" onClick={newRound} disabled={isLoading} />
       </div>
     </section>
   );
