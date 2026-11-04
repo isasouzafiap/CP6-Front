@@ -22,16 +22,16 @@ function LoginPage() {
       setError("Digite seu nome pra continuar.");
       return;
     }
-    if (!password.trim()) {
-      setError("Digite uma senha (qualquer uma, é só exemplo).");
+        if (!password.trim()) {
+      setError("Digite a senha para continuar.");
       return;
     }
 
-    const success = login(name);
+    const success = login(name, password);
     if (success) {
       navigate("/game");
     } else {
-      setError("Não foi possível entrar. Tente de novo.");
+      setError("Senha incorreta. Tente de novo.");
     }
   };
 
@@ -66,7 +66,7 @@ function LoginPage() {
           type="password"
           value={password}
           onChange={(event) => setPassword(event.target.value)}
-          placeholder="Qualquer senha"
+          placeholder="senha"
           className="w-full rounded-md px-3 py-2 mb-2 bg-panel text-panel-text placeholder:text-panel-text/50 outline-none focus:ring-2 focus:ring-accent"
         />
 
@@ -78,10 +78,6 @@ function LoginPage() {
 
         <Button label="Entrar" variant="primary" type="submit" />
 
-        <p className="text-[0.7rem] text-text-muted mt-4 text-center">
-          Esse login é só um exemplo didático — não guarda senha nenhuma de
-          verdade, só o nome pra identificar o jogador.
-        </p>
       </form>
     </div>
   );

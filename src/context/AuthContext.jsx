@@ -1,30 +1,27 @@
-import { createContext, useContext, useState, useCallback, useEffect } from "react";
+import { createContext, useContext, useState, useCallback } from "react";
 
 const AuthContext = createContext(null);
 const STORAGE_KEY = "blackjack-lounge:player-name";
 
 export function AuthProvider({ children }) {
-  const [playerName, setPlayerName] = useState(null);
+  const [playerName, setPlayerName] = useState(() =>
+    localStorage.getItem(STORAGE_KEY)
+  );
 
-  useEffect(() => {
-    const saved = sessionStorage.getItem(STORAGE_KEY);
-    if (saved) {
-      setPlayerName(saved);
-    }
-  }, []);
-
-  const login = useCallback((name) => {
+  const login = useCallback((name, password) => {
     const trimmedName = name.trim();
     if (!trimmedName) return false;
 
+    if (password !== import.meta.env.VITE_GAME_PASSWORD) return false;
+
     setPlayerName(trimmedName);
-    sessionStorage.setItem(STORAGE_KEY, trimmedName);
+    localStorage.setItem(STORAGE_KEY, trimmedName);
     return true;
   }, []);
 
   const logout = useCallback(() => {
     setPlayerName(null);
-    sessionStorage.removeItem(STORAGE_KEY);
+    localStorage.removeItem(STORAGE_KEY);
   }, []);
 
   const value = {

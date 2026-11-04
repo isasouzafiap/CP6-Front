@@ -24,3 +24,6 @@ Nesta versão do Blackjack, o objetivo é somar cartas sem ultrapassar 25 pontos
 # Nome e RM:
 **Nome:** Isabelle Souza Lima Pires Araujo
 **RM:** 569370
+
+## Deploy
+Aplicação publicada na Vercel: https://seu-projeto.vercel.app
